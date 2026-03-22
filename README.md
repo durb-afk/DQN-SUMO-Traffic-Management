@@ -14,7 +14,7 @@ The goal of this project is to replace that fixed logic with a learning agent th
 
 ## Approach
 
-### Simulation Environment — SUMO
+### Simulation Environment SUMO
 
 The intersection is a standard 4way junction (North, South, East, West) modelled in SUMO (Simulation of Urban MObility). Each arm has 3 lanes, right, straight, and left turns. Traffic is generated dynamically across three demand patterns within each episode:
 
@@ -24,7 +24,7 @@ The intersection is a standard 4way junction (North, South, East, West) modelled
 
 This forces the agent to generalise across different conditions rather than overfitting to a single pattern.
 
-### Reinforcement Learning — DQN
+### Reinforcement Learning DQN
 
 The agent uses **Deep Q-Network (DQN)**, a classic RL algorithm that learns a Q-function mapping (state, action) → expected future reward. The agent:
 
@@ -113,4 +113,4 @@ This project gave me hands on experience with the full reinforcement learning pi
 
 ---
 
-*Undergraduate project — ongoing. Contributions and feedback welcome.*
+*Undergraduate project ongoing. Contributions and feedback welcome.*

@@ -1,12 +1,12 @@
 # Traffic Signal Control with Deep Q-Learning (DQN)
 
-A reinforcement learning project that trains a DQN agent to adaptively control traffic signals at a simulated four-way intersection, using [SUMO](https://eclipse.dev/sumo/) for traffic simulation and [Stable Baselines3](https://stable-baselines3.readthedocs.io/) for the RL algorithm.
+A reinforcement learning project that trains a DQN agent to adaptively control traffic signals at a simulated fourway intersection, using [SUMO](https://eclipse.dev/sumo/) for traffic simulation and [Stable Baselines3](https://stable-baselines3.readthedocs.io/) for the RL algorithm.
 
 ---
 
 ## The Problem
 
-Traditional traffic signals run on fixed time cycles — green for 30 seconds, red for 30 seconds, regardless of how many cars are actually waiting. This is simple to implement but inherently wasteful: a busy lane might be forced to wait while an empty lane gets its turn.
+Traditional traffic signals run on fixed time cycles green for 30 seconds, red for 30 seconds, regardless of how many cars are actually waiting. This is simple to implement but inherently wasteful: a busy lane might be forced to wait while an empty lane gets its turn.
 
 The goal of this project is to replace that fixed logic with a learning agent that **observes the current state of the intersection and chooses which lanes to open** based on actual traffic demand.
 
@@ -16,7 +16,7 @@ The goal of this project is to replace that fixed logic with a learning agent th
 
 ### Simulation Environment — SUMO
 
-The intersection is a standard 4-way junction (North, South, East, West) modelled in SUMO (Simulation of Urban MObility). Each arm has 3 lanes — right, straight, and left turns. Traffic is generated dynamically across three demand patterns within each episode:
+The intersection is a standard 4way junction (North, South, East, West) modelled in SUMO (Simulation of Urban MObility). Each arm has 3 lanes, right, straight, and left turns. Traffic is generated dynamically across three demand patterns within each episode:
 
 - **Morning phase** (0–150s): Higher North–South volume, lower East–West
 - **Afternoon phase** (150–300s): Mixed, balanced demand
@@ -28,9 +28,9 @@ This forces the agent to generalise across different conditions rather than over
 
 The agent uses **Deep Q-Network (DQN)**, a classic RL algorithm that learns a Q-function mapping (state, action) → expected future reward. The agent:
 
-1. **Observes** the current state — queue lengths and waiting times at each lane, provided by SUMO-RL
-2. **Selects an action** — which lane group to open
-3. **Receives a reward** — proportional to the negative total queue length (fewer waiting cars = better reward)
+1. **Observes** the current state, queue lengths and waiting times at each lane, provided by SUMORL
+2. **Selects an action**, which lane group to open
+3. **Receives a reward**, proportional to the negative total queue length (fewer waiting cars = better reward)
 4. **Learns** by storing experiences in a replay buffer and updating the neural network via Q-learning
 
 ### Action Space Design
@@ -43,11 +43,11 @@ Rather than using the default 6 SUMO signal phases, we designed a custom **15-ac
 | 7–13 | East–West | Same 7 combinations |
 | 14 | Safety | All-red transition |
 
-Each action is mapped back to one of the 6 underlying SUMO phases via bitmask lookup. This lets the agent learn, for example, that during a right-turn surge it only needs to open the right lane — rather than being forced to choose between coarser all-NS or all-EW phases.
+Each action is mapped back to one of the 6 underlying SUMO phases via bitmask lookup. This lets the agent learn, for example, that during a rightturn surge it only needs to open the right lane, rather than being forced to choose between coarser all-NS or all-EW phases.
 
 ### Compatibility Layer
 
-SUMO-RL returns multi-agent dict outputs. Since we're running single-agent, a `SB3CompatWrapper` flattens these dicts into NumPy arrays compatible with Stable Baselines3, and handles both old (4-tuple) and new (5-tuple) Gymnasium step formats.
+SUMO-RL returns multi-agent dict outputs. Since we're running single agent, a `SB3CompatWrapper` flattens these dicts into NumPy arrays compatible with Stable Baselines3, and handles both old (4-tuple) and new (5-tuple) Gymnasium step formats.
 
 ---
 
@@ -66,7 +66,7 @@ The reward trajectory during training improves steadily from around -158 to -163
 ## Project Structure
 
 ```
-├── traffic_signal_dqn.ipynb   # Main notebook — training, evaluation, visual demo
+├── traffic_signal_dqn.ipynb   # Main notebook training, evaluation, visual demo
 ├── intersection.net.xml        # SUMO road network (4-way intersection)
 ├── intersection.rou.xml        # SUMO vehicle routes (dynamic traffic demand)
 ├── dqn_intersection.zip        # Saved trained model (generated after running cell 2)
@@ -109,7 +109,7 @@ You also need [SUMO installed](https://eclipse.dev/sumo/userdoc/Installing/) and
 
 ## What I Learned
 
-This project gave me hands-on experience with the full reinforcement learning pipeline — from designing a custom action space and bridging incompatible APIs, to training a neural network agent and evaluating it against real simulation metrics. The biggest challenge was the wrapper engineering: getting SUMO-RL's multi-agent dict outputs into a shape that Stable Baselines3 could consume required careful handling of multiple API versions.
+This project gave me hands on experience with the full reinforcement learning pipeline from designing a custom action space and bridging incompatible APIs, to training a neural network agent and evaluating it against real simulation metrics. The biggest challenge was the wrapper  getting SUMO-RL's multi-agent dict outputs into a shape that Stable Baselines3 could consume required careful handling of multiple API versions. Also getting the model to converge on the optimum required a lot of trial and error of various hyper parameters. The current model is also significantly weak. One solution to potentially look towards implementing is instead of initializing random weights, the DQN can be initialised with properly calculated weights that represent our existing knowledge about traffic singals. Then training the model with a high exploration rate this would help in a faster convergence to an optimum while exploring better traffic management techniques.
 
 ---
 

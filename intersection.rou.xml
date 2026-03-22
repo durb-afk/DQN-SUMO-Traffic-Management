@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<routes>
+    <vType id="car" accel="2.6" decel="4.5" sigma="0.5" length="5" maxSpeed="13.9"/>
+
+    <!-- NORTH APPROACH: Morning peak (0-150s), afternoon (150-300s), evening (300-450s) -->
+    <flow id="N_straight_morning" type="car" begin="0" end="150" number="45" from="N2C" to="C2S" departLane="1"/>
+    <flow id="N_left_morning" type="car" begin="0" end="150" number="25" from="N2C" to="C2E" departLane="2"/>
+    <flow id="N_right_morning" type="car" begin="0" end="150" number="25" from="N2C" to="C2W" departLane="0"/>
+    
+    <flow id="N_straight_afternoon" type="car" begin="150" end="300" number="30" from="N2C" to="C2S" departLane="1"/>
+    <flow id="N_left_afternoon" type="car" begin="150" end="300" number="15" from="N2C" to="C2E" departLane="2"/>
+    <flow id="N_right_afternoon" type="car" begin="150" end="300" number="35" from="N2C" to="C2W" departLane="0"/>
+    
+    <flow id="N_straight_evening" type="car" begin="300" end="450" number="55" from="N2C" to="C2S" departLane="1"/>
+    <flow id="N_left_evening" type="car" begin="300" end="450" number="30" from="N2C" to="C2E" departLane="2"/>
+    <flow id="N_right_evening" type="car" begin="300" end="450" number="20" from="N2C" to="C2W" departLane="0"/>
+
+    <!-- SOUTH APPROACH: Similar dynamic pattern -->
+    <flow id="S_straight_morning" type="car" begin="0" end="150" number="45" from="S2C" to="C2N" departLane="1"/>
+    <flow id="S_left_morning" type="car" begin="0" end="150" number="25" from="S2C" to="C2W" departLane="2"/>
+    <flow id="S_right_morning" type="car" begin="0" end="150" number="25" from="S2C" to="C2E" departLane="0"/>
+    
+    <flow id="S_straight_afternoon" type="car" begin="150" end="300" number="35" from="S2C" to="C2N" departLane="1"/>
+    <flow id="S_left_afternoon" type="car" begin="150" end="300" number="20" from="S2C" to="C2W" departLane="2"/>
+    <flow id="S_right_afternoon" type="car" begin="150" end="300" number="30" from="S2C" to="C2E" departLane="0"/>
+    
+    <flow id="S_straight_evening" type="car" begin="300" end="450" number="50" from="S2C" to="C2N" departLane="1"/>
+    <flow id="S_left_evening" type="car" begin="300" end="450" number="28" from="S2C" to="C2W" departLane="2"/>
+    <flow id="S_right_evening" type="car" begin="300" end="450" number="22" from="S2C" to="C2E" departLane="0"/>
+
+    <!-- EAST APPROACH: Different pattern (opposite peak times) -->
+    <flow id="E_straight_morning" type="car" begin="0" end="150" number="30" from="E2C" to="C2W" departLane="1"/>
+    <flow id="E_left_morning" type="car" begin="0" end="150" number="20" from="E2C" to="C2S" departLane="2"/>
+    <flow id="E_right_morning" type="car" begin="0" end="150" number="35" from="E2C" to="C2N" departLane="0"/>
+    
+    <flow id="E_straight_afternoon" type="car" begin="150" end="300" number="45" from="E2C" to="C2W" departLane="1"/>
+    <flow id="E_left_afternoon" type="car" begin="150" end="300" number="25" from="E2C" to="C2S" departLane="2"/>
+    <flow id="E_right_afternoon" type="car" begin="150" end="300" number="25" from="E2C" to="C2N" departLane="0"/>
+    
+    <flow id="E_straight_evening" type="car" begin="300" end="450" number="50" from="E2C" to="C2W" departLane="1"/>
+    <flow id="E_left_evening" type="car" begin="300" end="450" number="28" from="E2C" to="C2S" departLane="2"/>
+    <flow id="E_right_evening" type="car" begin="300" end="450" number="22" from="E2C" to="C2N" departLane="0"/>
+
+    <!-- WEST APPROACH: Mirror pattern to East -->
+    <flow id="W_straight_morning" type="car" begin="0" end="150" number="30" from="W2C" to="C2E" departLane="1"/>
+    <flow id="W_left_morning" type="car" begin="0" end="150" number="20" from="W2C" to="C2N" departLane="2"/>
+    <flow id="W_right_morning" type="car" begin="0" end="150" number="35" from="W2C" to="C2S" departLane="0"/>
+    
+    <flow id="W_straight_afternoon" type="car" begin="150" end="300" number="45" from="W2C" to="C2E" departLane="1"/>
+    <flow id="W_left_afternoon" type="car" begin="150" end="300" number="25" from="W2C" to="C2N" departLane="2"/>
+    <flow id="W_right_afternoon" type="car" begin="150" end="300" number="25" from="W2C" to="C2S" departLane="0"/>
+    
+    <flow id="W_straight_evening" type="car" begin="300" end="450" number="50" from="W2C" to="C2E" departLane="1"/>
+    <flow id="W_left_evening" type="car" begin="300" end="450" number="28" from="W2C" to="C2N" departLane="2"/>
+    <flow id="W_right_evening" type="car" begin="300" end="450" number="22" from="W2C" to="C2S" departLane="0"/>
+</routes>

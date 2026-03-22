@@ -1,0 +1,27 @@
+<additional>
+    <tlLogic id="C" type="static" programID="movement_control" offset="0">
+        <!-- North-South right turn -->
+        <phase duration="8" state="GrrrrrrrrrrrGrrrrrrrrrrr"/>
+        <phase duration="3" state="yrrrrrrrrrrryrrrrrrrrrrr"/>
+
+        <!-- North-South straight -->
+        <phase duration="22" state="rGGGrrrrrrrrrGGGrrrrrrrr"/>
+        <phase duration="3" state="ryyyrrrrrrrrryyyrrrrrrrr"/>
+
+        <!-- North-South left turn -->
+        <phase duration="10" state="rrrrGGrrrrrrrrrrGGrrrrrr"/>
+        <phase duration="3" state="rrrryyrrrrrrrrrryyrrrrrr"/>
+
+        <!-- East-West right turn -->
+        <phase duration="8" state="rrrrrrGrrrrrrrrrrrGrrrrr"/>
+        <phase duration="3" state="rrrrrryrrrrrrrrrrryrrrrr"/>
+
+        <!-- East-West straight -->
+        <phase duration="22" state="rrrrrrrGGGrrrrrrrrrGGGrr"/>
+        <phase duration="3" state="rrrrrrryyyrrrrrrrrryyyrr"/>
+
+        <!-- East-West left turn -->
+        <phase duration="10" state="rrrrrrrrrrGGrrrrrrrrrrGG"/>
+        <phase duration="3" state="rrrrrrrrrryyrrrrrrrrrryy"/>
+    </tlLogic>
+</additional>
